@@ -58,6 +58,8 @@ def audio_callback(indata, outdata, frames, time_data, status):
             echo_buffer[echo_write_idx] = dry + delayed_sample * ECHO_FEEDBACK
 
             echo_write_idx = (echo_write_idx + 1) % echo_buffer_size
+    elif current_fx == 2: 
+        out = np.tanh(audio * DIST_GAIN)
     else:
         out = audio
     
@@ -68,6 +70,7 @@ def cli_menu():
     print("guitar pedals:")
     print("1 - clean")
     print("2 - echo")
+    print("3 - gain")
     print("q - quit")
 
     while running:
@@ -79,6 +82,9 @@ def cli_menu():
         elif choice == "2":
             current_fx = 1
             print("echo")
+        elif choice == "3":
+            current_fx = 2
+            print("gain")
         elif choice == "q":
             running = False
         else:
