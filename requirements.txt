@@ -1,0 +1,4 @@
+cffi==2.0.0
+PyAudio==0.2.14
+pycparser==2.23
+sounddevice==0.5.3
