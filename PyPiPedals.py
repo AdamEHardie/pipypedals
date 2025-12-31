@@ -1,7 +1,7 @@
 import sounddevice as sd
 import time
 from config import SAMPLE_RATE, BUFFER_SIZE, INPUT_DEVICE, OUTPUT_DEVICE
-from effects import Clean, EffectChain, Echo, Gain, WahWah
+from effects import Clean, EffectChain, Echo, Gain, WahWah, Reverb, Tremolo
 from cli import Menu
 
 class PyPiPedals:
@@ -12,7 +12,9 @@ class PyPiPedals:
         self.effects = [Clean(SAMPLE_RATE), 
             Echo(SAMPLE_RATE), 
             Gain(SAMPLE_RATE),
-            WahWah(SAMPLE_RATE)
+            WahWah(SAMPLE_RATE),
+            Reverb(SAMPLE_RATE),
+            Tremolo(SAMPLE_RATE)
         ]
         
         self.effect_chain = EffectChain(SAMPLE_RATE)
