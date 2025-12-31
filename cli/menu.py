@@ -1,10 +1,11 @@
 import threading
 
 class Menu:
-    def __init__(self, effects, effect_chain, on_quit_callback):
+    def __init__(self, effects, effect_chain, looper, on_quit_callback):
         self.effects = effects
         self.effect_chain = effect_chain
         self.current_effect_idx = 0
+        self.looper = looper
         self.running = True
         self.on_quit = on_quit_callback
         self.chain_mode = False
@@ -17,6 +18,8 @@ class Menu:
     def display_menu(self):
         print("PyPiPedals")
         print("----------")
+
+        print(f"\n[LOOPER: {self.looper.get_status()}]")
         if not self.chain_mode:
             print('\n[SINGLE EFFECT MODE]')
             print('\nEffects:')
@@ -34,6 +37,12 @@ class Menu:
             print(" s   : Switch to single effect mode")
             print(" r   : Reset All effects")
         
+
+
+        print("\nLooper Controls:")
+        print("  L    : Start recording loop")
+        print("  l    : Stop recording / Toggle playback")
+        print("  x    : Clear loop")
         print(" Q   : quit")
         print("----------")
 
@@ -71,6 +80,27 @@ class Menu:
             elif choice == "r" and self.chain_mode:
                 self.effect_chain.reset()
                 print("\n all effects reset")
+                # Looper controls
+            # Looper controls - SPACEBAR (empty string = just pressing Enter)
+            elif choice == "":
+                # Empty input = spacebar/enter pressed
+                if not self.looper.is_recording and self.looper.loop_length == 0:
+                    # Start recording if no loop exists
+                    msg = self.looper.start_recording()
+                    print(f"\n♪ {msg}")
+                elif self.looper.is_recording:
+                    # Stop recording and start playback
+                    msg = self.looper.stop_recording()
+                    self.display_menu()
+                    print(f"\n♪ {msg}")
+                else:
+                    # Toggle playback if loop exists
+                    msg = self.looper.toggle_playback()
+                    print(f"\n♪ {msg}")
+            elif choice == "x":
+                msg = self.looper.clear_loop()
+                self.display_menu()
+                print(f"\n♪ {msg}")
             elif choice == "q":
                 print("exiting...")
                 self.running = False

@@ -5,5 +5,6 @@ from .Gain import Gain
 from .WahWah import WahWah
 from .Reverb import Reverb
 from .Tremolo import Tremolo
+from .Looper import Looper
 
-__all__ = ['Clean', 'EffectChain', 'Echo', 'Gain', 'WahWah', 'Reverb', 'Tremolo']
+__all__ = ['Clean', 'EffectChain', 'Echo', 'Gain', 'WahWah', 'Reverb', 'Tremolo', 'Looper']
