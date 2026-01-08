@@ -40,9 +40,9 @@ class Menu:
 
 
         print("\nLooper Controls:")
-        print("  L    : Start recording loop")
-        print("  l    : Stop recording / Toggle playback")
-        print("  x    : Clear loop")
+        print("  SPACE/Enter  : Toggle recording/playback")
+        print("  x      : Clear loop")
+        print("  q      : Quit")
         print(" Q   : quit")
         print("----------")
 

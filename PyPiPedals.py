@@ -1,7 +1,7 @@
 import sounddevice as sd
 import time
 from config import SAMPLE_RATE, BUFFER_SIZE, INPUT_DEVICE, OUTPUT_DEVICE
-from effects import Clean, EffectChain, Echo, Gain, WahWah, Reverb, Tremolo, Looper
+from effects import Clean, EffectChain, Echo, Gain, WahWah, Reverb, Tremolo, Looper, Octaver, BossOC3, QTronPlus, SlowDancingPedal, WildBlueChords
 from cli import Menu
 
 class PyPiPedals:
@@ -14,7 +14,12 @@ class PyPiPedals:
             Gain(SAMPLE_RATE),
             WahWah(SAMPLE_RATE),
             Reverb(SAMPLE_RATE),
-            Tremolo(SAMPLE_RATE)
+            Tremolo(SAMPLE_RATE),
+            Octaver(SAMPLE_RATE),
+            BossOC3(SAMPLE_RATE),
+            QTronPlus(SAMPLE_RATE),
+            SlowDancingPedal(SAMPLE_RATE),
+            WildBlueChords(SAMPLE_RATE)
         ]
         
         self.effect_chain = EffectChain(SAMPLE_RATE)
